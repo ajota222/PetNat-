@@ -17,26 +17,28 @@
             background-position: left top, right top;
             background-repeat: no-repeat, no-repeat;
         }
-<!-- Adicione o Firebase SDK (se já não estiver incluído) -->
 <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js"></script>
+
+        import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 
 <script>
   // Sua configuração do Firebase
   const firebaseConfig = {
-    apiKey: "SuaApiKey",
-    authDomain: "SeuAuthDomain",
-    databaseURL: "SuaDatabaseURL",
-    projectId: "SeuProjectId",
-    storageBucket: "SeuStorageBucket",
-    messagingSenderId: "SeuMessagingSenderId",
-    appId: "SeuAppId",
-    measurementId: "SuaMeasurementId"
+    apiKey: "AIzaSyAvojpFkMnQ1Anj4zvuTbJPRWA5VUcSfQs",
+    authDomain: "petnatu-d42da.firebaseapp.com",
+    databaseURL: "https://petnatu-d42da-default-rtdb.firebaseio.com",
+    projectId: "petnatu-d42da",
+    storageBucket: "petnatu-d42da.appspot.com",
+    messagingSenderId: "76547231221",
+    appId: "1:76547231221:web:9909617f7fc1f9d6b1a4bc",
+    measurementId: "G-4HGRCSGQ32"
   };
 
   // Inicialize o Firebase
-  const app = firebase.initializeApp(firebaseConfig);
-  const database = firebase.getDatabase(app);
+  const app = initializeApp(firebaseConfig);
+  const database = getAnalytics(app);
 
   // Função para enviar dados do formulário para o Firebase
   function enviarDados() {
