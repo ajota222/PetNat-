@@ -17,6 +17,49 @@
             background-position: left top, right top;
             background-repeat: no-repeat, no-repeat;
         }
+<!-- Adicione o Firebase SDK (se já não estiver incluído) -->
+<script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js"></script>
+
+<script>
+  // Sua configuração do Firebase
+  const firebaseConfig = {
+    apiKey: "SuaApiKey",
+    authDomain: "SeuAuthDomain",
+    databaseURL: "SuaDatabaseURL",
+    projectId: "SeuProjectId",
+    storageBucket: "SeuStorageBucket",
+    messagingSenderId: "SeuMessagingSenderId",
+    appId: "SeuAppId",
+    measurementId: "SuaMeasurementId"
+  };
+
+  // Inicialize o Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const database = firebase.getDatabase(app);
+
+  // Função para enviar dados do formulário para o Firebase
+  function enviarDados() {
+    const email = document.getElementById('email').value;
+    const nome = document.getElementById('nome').value;
+    const telefone = document.getElementById('telefone').value;
+
+    // Referência para o local onde você deseja armazenar os dados (por exemplo, 'usuarios')
+    const usuariosRef = firebase.ref(database, 'usuarios');
+
+    // Armazene os dados no Realtime Database
+    firebase.push(usuariosRef, {
+      email: email,
+      nome: nome,
+      telefone: telefone
+    });
+
+    // Limpe o formulário após o envio
+    document.getElementById('email').value = '';
+    document.getElementById('nome').value = '';
+    document.getElementById('telefone').value = '';
+  }
+</script>
 
         header {
             background-image: url('https://agesbioactive.com/wp-content/uploads/2023/03/IMG_BLOG_31-03-23-scaled.jpg');
@@ -216,15 +259,20 @@
         <div class="discount-section">
             <h2 class="discount-title">Garanta o Seu Desconto</h2>
             <form class="form-group">
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="name">Nome:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="phone">Telefone:</label>
-                <input type="tel" id="phone" name="phone" required>
-                <button type="submit">Enviar</button>
-                <p style="color: #004d40; margin-top: 10px; font-weight: bold;">Atendemos nacionalmente!</p>
-            </form>
+                <form onsubmit="enviarDados(); return false;">
+  <label for="email">E-mail:</label>
+  <input type="email" id="email" name="email" required>
+
+  <label for="nome">Nome:</label>
+  <input type="text" id="nome" name="nome" required>
+
+  <label for="telefone">Telefone:</label>
+  <input type="tel" id="telefone" name="telefone" required>
+
+  <button type="submit">Enviar</button>
+  <p style="color: #004d40; margin-top: 10px; font-weight: bold;">Atendemos nacionalmente!</p>
+</form>
+</form>
         </div>
 
         <!-- Nova seção de Contatos -->
